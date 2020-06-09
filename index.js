@@ -29,6 +29,7 @@ function scrape (sitemapInfo, options = {}) {
     const store = new InMemoryStore()
     const sitemap = new Sitemap(sitemapInfo, {$: fake$, document: fakeDocument, window: fakeWindow})
 
+
     let BrowserConstructor
     switch (options.browser) {
       case 'jsdom':
@@ -44,7 +45,8 @@ function scrape (sitemapInfo, options = {}) {
         BrowserConstructor = JSDOMBrowser
     }
     const browser = new BrowserConstructor({
-      pageLoadDelay: options.pageLoadDelay || 2000
+      pageLoadDelay: options.pageLoadDelay || 2000,
+      chromeArgs: options.chromeArgs
     })
     const s = new Scraper({
       queue: q,
