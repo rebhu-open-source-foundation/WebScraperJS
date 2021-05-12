@@ -10,7 +10,7 @@ class ChromeHeadlessBrowser {
     this.pageLoadDelay = options.pageLoadDelay
     // constructors cannot handle asynchronous
     this.browserPromise = puppeteer.launch({
-      headless: true,
+      headless: options.headless ? options.headless : true,
       args: options.chromeArgs
     })
     this.pagePromise = this.browserPromise.then(function (browser) {
@@ -20,6 +20,7 @@ class ChromeHeadlessBrowser {
   async loadUrl (url) {
     debug('Loading url', url)
     const page = await this.pagePromise
+    page.setExtraHTTPHeaders({'accept-language': 'en-AU,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'});
     await page.goto(url, {waitUntil: 'networkidle2'})
   }
   async close () {
