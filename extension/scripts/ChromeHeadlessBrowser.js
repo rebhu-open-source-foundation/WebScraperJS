@@ -1,26 +1,35 @@
-const puppeteer = require('puppeteer')
 const debug = require('debug')('web-scraper-headless:chrome-headless-browser')
 const {ExecutionContext} = require('puppeteer/lib/ExecutionContext')
 const contentSraperBundler = require('../content_script/contentScraperHeadlessBundler')
 const jqueryDeferred = require('jquery-deferred')
 const whenCallSequentially = require('../assets/jquery.whencallsequentially')
 
+const puppeteer = require('puppeteer-extra')
+
+// add stealth plugin and use defaults (all evasion techniques)
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+puppeteer.use(StealthPlugin())
+
 class ChromeHeadlessBrowser {
   constructor (options) {
     this.pageLoadDelay = options.pageLoadDelay
     // constructors cannot handle asynchronous
     this.browserPromise = puppeteer.launch({
-      headless: options.headless ? options.headless : true,
+      headless: false,
       args: options.chromeArgs
     })
+    this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
     this.pagePromise = this.browserPromise.then(function (browser) {
       return browser.newPage()
     })
+
   }
   async loadUrl (url) {
     debug('Loading url', url)
     const page = await this.pagePromise
-    page.setExtraHTTPHeaders({'accept-language': 'en-AU,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'});
+    if(this.proxy.auth) {
+      await page.authenticate({username: this.proxy.auth.username, password: this.proxy.auth.password});
+    }
     await page.goto(url, {waitUntil: 'networkidle2'})
   }
   async close () {

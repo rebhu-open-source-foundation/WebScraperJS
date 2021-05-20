@@ -46,7 +46,9 @@ function scrape (sitemapInfo, options = {}) {
     }
     const browser = new BrowserConstructor({
       pageLoadDelay: options.pageLoadDelay || 2000,
-      chromeArgs: options.chromeArgs
+      headless: options.headless? options.headless : true,
+      chromeArgs: options.chromeArgs,
+      proxy: options.proxy
     })
     const s = new Scraper({
       queue: q,
