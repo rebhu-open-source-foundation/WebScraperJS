@@ -4,10 +4,12 @@ const contentSraperBundler = require('../content_script/contentScraperHeadlessBu
 const jqueryDeferred = require('jquery-deferred')
 const whenCallSequentially = require('../assets/jquery.whencallsequentially')
 
-const puppeteer = require('puppeteer-extra')
+const vanillaPuppeteer = require('puppeteer')
+const {addExtra} = require('puppeteer-extra')
 
 // add stealth plugin and use defaults (all evasion techniques)
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+const puppeteer = addExtra(vanillaPuppeteer)
 puppeteer.use(StealthPlugin())
 
 class ChromeHeadlessBrowser {
@@ -15,7 +17,7 @@ class ChromeHeadlessBrowser {
     this.pageLoadDelay = options.pageLoadDelay
     // constructors cannot handle asynchronous
     this.browserPromise = puppeteer.launch({
-      headless: true,
+      headless: false,
       args: options.chromeArgs
     })
     this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
