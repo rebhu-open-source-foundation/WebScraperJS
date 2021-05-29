@@ -44,7 +44,7 @@ function runNodeTests () {
 gulp.task('build:watch', () => generateBuilder(true, true))
 gulp.task('build', () => generateBuilder(false, false))
 
-gulp.task('default', ['build:watch'])
+gulp.task('default', gulp.series('build:watch'))
 
 function generateBuilder (isWatch, debug) {
   const wrapper = isWatch ? watchify : (x) => x
