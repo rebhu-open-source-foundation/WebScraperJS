@@ -34,7 +34,8 @@
   },
   "scripts": {
     "build": "gulp build",
-    "test-watch": "gulp"
+    "test-watch": "gulp",
+    "test": "./node_modules/.bin/mocha --require @babel/register"
   },
   "repository": {
     "type": "git",

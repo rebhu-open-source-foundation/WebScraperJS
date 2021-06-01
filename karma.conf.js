@@ -31,7 +31,7 @@ module.exports = function (config) {
     browserify: {
       debug: true,
       transform: [
-        ['babelify', {ignore: /\/node_modules\//}]
+        ['babelify', {ignore: [/\/node_modules\//]}]
       ]
     },
 
