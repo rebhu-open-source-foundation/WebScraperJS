@@ -3,10 +3,10 @@ const browserify = require('browserify')
 const watchify = require('watchify')
 const source = require('vinyl-source-stream')
 const notify = require('gulp-notify')
-const Server = require('karma').Server
+const karma = require('karma')
 const path = require('path')
 const babelify = require('babelify')
-const mocha = require('gulp-spawn-mocha')
+const mocha = require('gulp-mocha')
 // We do karma in gulp instead of npm because we need to recompute all the generated bundles that are loaded to the browser
 const runTests = (function () {
   let builds = 0
@@ -20,12 +20,27 @@ const runTests = (function () {
   }
 })()
 
-function runKarma (done) {
-  const server = new Server({
-    configFile: path.join(__dirname, 'karma.conf.js'),
-    singleRun: true
-  }, done)
-  server.start()
+function runKarma (done) {  // const server = new Server({
+     //configFile: path.join(__dirname, 'karma.conf.js'),
+     //singleRun: true
+  // }, done)
+  //const cfg = karma.config;
+  const parseConfig = karma.config.parseConfig;
+  const Server = karma.Server
+  parseConfig(
+    path.resolve('./karma.conf.js'),
+    { port: 9876 },
+    { promiseConfig: true, throwErrors: true }
+  ).then(
+    (karmaConfig) => {
+      const server = new Server(karmaConfig, function doneCallback(exitCode) {
+        console.log('Karma has exited with ' + exitCode)
+        process.exit(exitCode)
+      })
+    },
+    (rejectReason) => { /* respond to the rejection reason error */ }
+  );
+  
 }
 
 function runNodeTests () {
@@ -37,7 +52,7 @@ function runNodeTests () {
     'tests/spec/headless/*Spec.js'
   ])
     .pipe(mocha({
-      compilers: 'js:babel-register'
+      require: ['babel-register']
     }).on('error', console.error))
 }
 
