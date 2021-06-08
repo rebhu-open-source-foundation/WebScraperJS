@@ -1,5 +1,6 @@
 const debug = require('debug')('web-scraper-headless:chrome-headless-browser')
-const {ExecutionContext} = require('puppeteer/lib/ExecutionContext')
+// const {ExecutionContext} = require('../node_modules/puppeteer-core/cjs-entry.js')
+const {ExecutionContext} = require('puppeteer')
 const contentSraperBundler = require('../content_script/contentScraperHeadlessBundler')
 const jqueryDeferred = require('jquery-deferred')
 const whenCallSequentially = require('../assets/jquery.whencallsequentially')

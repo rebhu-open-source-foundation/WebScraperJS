@@ -5615,6 +5615,24 @@ pupa@^2.0.1:
   dependencies:
     escape-goat "^2.0.0"
 
+puppeteer-core@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-10.0.0.tgz#5bf787ad95b5f70ea61634d8c80ffca9f2e92b6e"
+  integrity sha512-kaNsKhNYcayHnlwpkBf1w/lhyi1zUSHGLgh5z6DwhTbTrVN0pQHjWj7/TNBooop5Ehv0H7KFuH5QTbxrRFeDdA==
+  dependencies:
+    debug "4.3.1"
+    devtools-protocol "0.0.883894"
+    extract-zip "2.0.1"
+    https-proxy-agent "5.0.0"
+    node-fetch "2.6.1"
+    pkg-dir "4.2.0"
+    progress "2.0.1"
+    proxy-from-env "1.1.0"
+    rimraf "3.0.2"
+    tar-fs "2.0.0"
+    unbzip2-stream "1.3.3"
+    ws "7.4.6"
+
 puppeteer-extra-plugin-stealth@^2.7.8:
   version "2.7.8"
   resolved "https://registry.yarnpkg.com/puppeteer-extra-plugin-stealth/-/puppeteer-extra-plugin-stealth-2.7.8.tgz#7424c955e25351a55024734477059c988647047c"
