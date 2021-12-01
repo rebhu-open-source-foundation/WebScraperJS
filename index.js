@@ -59,6 +59,7 @@ function scrape (sitemapInfo, options = {}) {
     }, {})
     s.run(function (err) {
       if (err) {
+        console.error(err)
         reject(err)
       } else {
         resolve(store.data)
