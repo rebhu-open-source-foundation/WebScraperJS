@@ -50,6 +50,14 @@ function scrape (sitemapInfo, options = {}) {
       chromeArgs: options.chromeArgs,
       proxy: options.proxy
     })
+
+    console.log(`Browser Details = ${JSON.stringify({
+      pageLoadDelay: options.pageLoadDelay || 2000,
+      headless: options.headless? options.headless : true,
+      chromeArgs: options.chromeArgs,
+      proxy: options.proxy
+    })}`)
+
     const s = new Scraper({
       queue: q,
       sitemap,
