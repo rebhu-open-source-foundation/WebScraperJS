@@ -32,7 +32,7 @@ class ChromeHeadlessBrowser {
     if(this.proxy.auth) {
       await page.authenticate({username: this.proxy.auth.username, password: this.proxy.auth.password});
     }
-    await page.goto(url, {waitUntil: 'networkidle2'})
+    await page.goto(url, {waitUntil: 'networkidle0', timeout:120000})
   }
   async close () {
     try {
