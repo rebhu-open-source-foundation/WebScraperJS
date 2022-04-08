@@ -19,7 +19,8 @@ class ChromeHeadlessBrowser {
     // constructors cannot handle asynchronous
     this.browserPromise = puppeteer.launch({
       headless: true,
-      args: options.chromeArgs
+      args: options.chromeArgs,
+      pipe:true
     })
     console.log("right aftah puppeteer")
     this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
