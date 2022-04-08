@@ -24,6 +24,7 @@ class ChromeHeadlessBrowser {
     console.log("right aftah puppeteer")
     this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
     this.pagePromise = this.browserPromise.then(function (browser) {
+      console.log("about to start new page")
       return browser.newPage()
     }).catch(e => { console.log("pagePromise errah" + JSON.stringify(e))})
 
