@@ -1,4 +1,3 @@
-const debug = require('debug')('web-scraper-headless:chrome-headless-browser')
 const {ExecutionContext} = require('puppeteer/lib/ExecutionContext')
 const contentSraperBundler = require('../content_script/contentScraperHeadlessBundler')
 const jqueryDeferred = require('jquery-deferred')
@@ -11,6 +10,7 @@ const {addExtra} = require('puppeteer-extra')
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 const puppeteer = addExtra(vanillaPuppeteer)
 puppeteer.use(StealthPlugin())
+const debug = console.log
 
 class ChromeHeadlessBrowser {
   constructor (options) {

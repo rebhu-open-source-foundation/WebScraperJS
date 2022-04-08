@@ -1,4 +1,4 @@
-const debug = require('debug')('web-scraper-headless:job')
+const debug = console.log
 var Job = function (url, parentSelector, scraper, parentJob, baseData) {
   if (parentJob !== undefined) {
     this.url = this.combineUrls(parentJob.url, url)

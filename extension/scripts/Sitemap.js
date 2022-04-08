@@ -1,6 +1,6 @@
 var Selector = require('./Selector')
 var SelectorList = require('./SelectorList')
-const debug = require('debug')('web-scraper-headless:sitemap')
+const debug = console.log
 var Sitemap = function (sitemapObj, options) {
   var $ = options.$
   var document = options.document

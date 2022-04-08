@@ -1,6 +1,6 @@
 var whenCallSequentially = require('../assets/jquery.whencallsequentially')
 var Job = require('./Job')
-const debug = require('debug')('web-scraper-headless:scraper')
+const debug = console.log
 var Scraper = function (options, moreOptions) {
   this.queue = options.queue
   this.sitemap = options.sitemap
