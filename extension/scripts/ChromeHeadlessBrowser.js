@@ -25,7 +25,9 @@ class ChromeHeadlessBrowser {
     this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
     this.pagePromise = this.browserPromise.then(function (browser) {
       console.log("about to start new page")
-      return browser.newPage()
+      let response = browser.newPage()
+      console.log(response)
+      return response
     }).catch(e => { console.log("pagePromise errah" + JSON.stringify(e))})
 
   }
