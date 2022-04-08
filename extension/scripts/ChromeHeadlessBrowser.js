@@ -25,7 +25,7 @@ class ChromeHeadlessBrowser {
     this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
     this.pagePromise = this.browserPromise.then(function (browser) {
       return browser.newPage()
-    })
+    }).catch(e => { console.log("pagePromise errah" + JSON.stringify(e))})
 
   }
   async loadUrl (url) {
@@ -63,6 +63,7 @@ class ChromeHeadlessBrowser {
     try {
       console.log("fetching data")
       const page = await this.pagePromise
+      console.log("page")
       await this.loadUrl(url)
       console.log("lodded url")
 
