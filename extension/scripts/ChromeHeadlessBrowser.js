@@ -90,6 +90,7 @@ class ChromeHeadlessBrowser {
       }, message)
       callback.call(scope, null, data)
     } catch (e) {
+      console.log(e)
       return callback(e)
     }
   }
