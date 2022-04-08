@@ -65,6 +65,9 @@ function scrape (sitemapInfo, options = {}) {
       store,
       delay: options.delay || 500
     }, {})
+
+    console.log("scraper initialised")
+
     s.run(function (err) {
       if (err) {
         console.error(err)

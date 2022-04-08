@@ -15,11 +15,13 @@ puppeteer.use(StealthPlugin())
 class ChromeHeadlessBrowser {
   constructor (options) {
     this.pageLoadDelay = options.pageLoadDelay
+    console.log("right before puppeteer")
     // constructors cannot handle asynchronous
     this.browserPromise = puppeteer.launch({
       headless: true,
       args: options.chromeArgs
     })
+    console.log("right aftah puppeteer")
     this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
     this.pagePromise = this.browserPromise.then(function (browser) {
       return browser.newPage()
