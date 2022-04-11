@@ -22,6 +22,7 @@ class ChromeHeadlessBrowser {
       headless: true,
       args: options.chromeArgs,
       pipe:true,
+      dumpio: true
     })
     console.log("right aftah puppeteer")
     this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
