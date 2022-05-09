@@ -49,7 +49,7 @@ function scrape (sitemapInfo, options = {}) {
       headless: options.headless? options.headless : true,
       chromeArgs: options.chromeArgs,
       proxy: options.proxy,
-      dumpio: options.dumpio
+      dumpio: options.dumpio ? options.dumpio : false
     })
 
     console.log(`Browser Details = ${JSON.stringify({
