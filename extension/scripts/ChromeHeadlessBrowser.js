@@ -14,19 +14,18 @@ const debug = console.log
 
 class ChromeHeadlessBrowser {
   constructor (options) {
-    console.log(options)
     this.pageLoadDelay = options.pageLoadDelay
-    console.log("right before puppeteer")
     // constructors cannot handle asynchronous
     this.browserPromise = puppeteer.launch({
       headless: true,
       args: options.chromeArgs,
-      pipe:true
+      pipe:true,
+      dumpio:options.dumpio
+
     })
     this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
     this.pagePromise = this.browserPromise.then(function (browser) {
       let response = browser.newPage()
-      console.log(response)
       return response
     }).catch(e => { console.log(JSON.stringify(e))})
 
