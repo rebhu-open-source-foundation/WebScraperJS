@@ -29,7 +29,6 @@ function scrape (sitemapInfo, options = {}) {
     const store = new InMemoryStore()
     const sitemap = new Sitemap(sitemapInfo, {$: fake$, document: fakeDocument, window: fakeWindow})
 
-
     let BrowserConstructor
     switch (options.browser) {
       case 'jsdom':
@@ -56,7 +55,7 @@ function scrape (sitemapInfo, options = {}) {
       pageLoadDelay: options.pageLoadDelay || 2000,
       headless: options.headless? options.headless : true,
       chromeArgs: options.chromeArgs,
-      proxy: options.proxy
+      proxy: options.proxy ? "enabled" : "disabled",
     })}`)
 
     const s = new Scraper({
@@ -67,7 +66,6 @@ function scrape (sitemapInfo, options = {}) {
       delay: options.delay || 500
     }, {})
 
-    console.log("scraper initialised")
 
     s.run(function (err) {
       if (err) {

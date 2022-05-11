@@ -19,9 +19,7 @@ class ChromeHeadlessBrowser {
     this.browserPromise = puppeteer.launch({
       headless: true,
       args: options.chromeArgs,
-      pipe:true,
       dumpio:options.dumpio
-
     })
     this.proxy = options.proxy.auth? {auth:options.proxy.auth }: null
     this.pagePromise = this.browserPromise.then(function (browser) {
