@@ -81,12 +81,10 @@ Scraper.prototype = {
   _run: function () {
     var job = this.queue.getNextJob()
     if (job === false) {
-      debug('Scraper execution is finished')
       this.browser.close()
       this.executionCallback()
       return
     }
-    console.log('starting execute')
     job.execute(this.browser, function (err, job) {
       if (err) {
         // jobs don't seem to return anything
@@ -94,7 +92,6 @@ Scraper.prototype = {
         this.executionCallback(err)
         return
       }
-      console.log('finished executing')
       var scrapedRecords = []
       var deferredDatamanipulations = []
 

@@ -10,7 +10,6 @@ const {addExtra} = require('puppeteer-extra')
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 const puppeteer = addExtra(vanillaPuppeteer)
 puppeteer.use(StealthPlugin())
-const debug = console.log
 
 class ChromeHeadlessBrowser {
   constructor (options) {
@@ -26,10 +25,8 @@ class ChromeHeadlessBrowser {
       let response = browser.newPage()
       return response
     }).catch(e => { console.log(JSON.stringify(e))})
-
   }
   async loadUrl (url) {
-    debug('Loading url', url)
     const page = await this.pagePromise
     if(this.proxy.auth) {
       await page.authenticate({username: this.proxy.auth.username, password: this.proxy.auth.password});
